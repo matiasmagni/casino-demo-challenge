@@ -1,0 +1,12 @@
+/* 
+Plugin settings for Cucumber related files like feature file and step definitions file
+This allows auto-completion of gherkin commands and assist in designing the cucumber files
+*/
+{
+    "cucumberautocomplete.steps": [
+        "./cypress/support/step_definitions/*.ts"
+    ],
+    "cucumberautocomplete.syncfeatures": "./cypress/integration",
+    "cucumberautocomplete.strictGherkinCompletion": true,
+    "git.ignoreLimitWarning": true,
+}

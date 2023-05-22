@@ -1,0 +1,11 @@
+{
+    "emailInput": "[data-test=input-email]",
+    "agreementCheckbox": "[data-test=input-terms_and_conditions]",
+    "currencyDropdown": "[for=core__protected_modules_user_yiiForm_RegistrationForm_currency] + .input__wrapper",
+    "currencyDropdownItem": "[for=core__protected_modules_user_yiiForm_RegistrationForm_currency] + .input__wrapper ul li",
+    "passwordInput": "[data-test=input-password]",
+    "passwordConfirmationInput": "[data-test=input-password_confirmation]",
+    "promoCodeRadio": "[type=radio][data-test=input-promo_code]",
+    "promoCodeInput": "[type=text][data-test=input-promo_code]",
+    "noBonusRadio": "[data-test=input-bonus]"
+}
