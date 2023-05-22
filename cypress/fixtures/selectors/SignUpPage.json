@@ -7,5 +7,6 @@
     "passwordConfirmationInput": "[data-test=input-password_confirmation]",
     "promoCodeRadio": "[type=radio][data-test=input-promo_code]",
     "promoCodeInput": "[type=text][data-test=input-promo_code]",
-    "noBonusRadio": "[data-test=input-bonus]"
+    "noBonusRadio": "[data-test=input-bonus]",
+    "redeemBonusSection": "#bonus-list-container"
 }

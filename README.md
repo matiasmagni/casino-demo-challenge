@@ -326,7 +326,7 @@ yarn clean:reports
 
 ### Running tagged tests
 
-You can use tags to select which test should run using [cucumber's tag expressions](https://github.com/cucumber/cucumber/tree/master/tag-expressions).
+You can use tags to select which test should run using [cucumber's tag expressions](https://github.com/cucumber/tag-expressions).
 Keep in mind we are using newer syntax, eg. `'not @foo and (@bar or @zap)'`.
 In order to initialize tests using tags you will have to run cypress and pass TAGS environment variable.
 

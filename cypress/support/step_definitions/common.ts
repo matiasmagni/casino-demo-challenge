@@ -48,9 +48,11 @@ When('the user inputs valid data into {string} form', (pageName: string, table: 
                 break;
 
             case 'Dropdown':
+                // Complex dropdown (non HTML select)
+                // Click on dropdown to display items
                 page.getElement(fieldName + 'Dropdown')
                     .click();
-
+                // Get the displayed choosen item and click it
                 page.getElement(fieldName + 'DropdownItem')
                     .contains(fieldValue)
                     .click();
@@ -67,28 +69,6 @@ When('the user inputs valid data into {string} form', (pageName: string, table: 
         }
     });
 });
-
-When('the user selects {string} option on Redeem Bonus section of {string} page',
-    (option: string, pageName: string) => {
-        const page: BasePage = PageFactory.getCurrentPageObject(pageName);
-
-        switch (option) {
-            case 'Use a promo code':
-                page.getElement('promoCodeRadio')
-                    .click({ force: true }); // Workaround for covered element
-                break;
-
-            case 'No bonus':
-                page.getElement('noBonusRadio')
-                    .click({ force: true }); // Workaround for covered element
-                break;
-
-            default:
-                throw new Error(`Redeem bonus option "${option}" not implemented yet!`);
-
-        }
-    }
-);
 
 When('the user completes the captcha manually', () => {
     // Pauses the tests.

@@ -2,8 +2,8 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   projectId: 'casino-demo-challenge',
-  viewportWidth: 1024,
-  viewportHeight: 800,
+  viewportWidth: 1366,
+  viewportHeight: 768,
   chromeWebSecurity: false,
   retries: {
     runMode: 2,
