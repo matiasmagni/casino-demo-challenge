@@ -129,3 +129,17 @@ Feature: Sign Up
     Examples:
       | email                  | password    | passwordConfirmation |
       | matias.magni@gmail.com | Password123 | Password123          |
+
+  @NegativeTest @PipelineIgnore @HybridTest
+  Scenario: User tries to sign up leaving all fields blank
+    Given the user has navigated to "Sign Up" page
+    And the user has closed the Welcome window
+    And the user clicks on "Create account" form button
+    And the user completes the captcha manually
+    Then the user visualizes error messages below the "Sign Up" uncompleted fields
+      | Fields                |
+      | Email                 |
+      | Agreement             |
+      | Password              |
+      | Password Confirmation |
+      | Promo Code            |

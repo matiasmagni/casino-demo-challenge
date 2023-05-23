@@ -4,6 +4,7 @@ import BasePage from '../pages/BasePage';
 import PageFactory from '../pages/PageFactory';
 import { getRandomEmail } from '../../utils/random';
 import { faker } from '@faker-js/faker';
+import SignUpPage from '../pages/SignUpPage';
 
 Given('the user has navigated to {string} page', (pageName: string) => {
     PageFactory.getCurrentPageObject(pageName).navigateToThisPage(30);
@@ -129,4 +130,15 @@ Then('the user receives the SMS messsage in his phone and inputs the verificatio
     // Pauses the tests.
     cy.pause();
     // Check.
+});
+
+Then('the user visualizes error messages below the {string} uncompleted fields', (pageName: string, table: any) => {
+    const page: BasePage = PageFactory.getCurrentPageObject(pageName);
+
+    table.rows().forEach(([fieldName]: string[]) => {
+        page.getElement(fieldName + 'BlankErrorMsg')
+            .should('exist')
+            .and('be.visible')
+            .and('contain.text', page.getTestData(fieldName + 'BlankError'));
+    });
 });

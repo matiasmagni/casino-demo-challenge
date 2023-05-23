@@ -1,3 +1,8 @@
 {
-    "existingEmailError": "This email has been used for registration already. Please contact customer support."
+    "existingEmailError": "This email has been used for registration already. Please contact customer support.",
+    "emailBlankError": "Email or phone number is required.",
+    "agreementBlankError": "You have to accept our Terms and Conditions.",
+    "passwordBlankError": "Password cannot be blank.",
+    "passwordConfirmationBlankError": "Password confirmation cannot be blank.",
+    "promoCodeBlankError": "Promo code is invalid"
 }

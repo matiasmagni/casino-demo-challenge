@@ -107,7 +107,7 @@ export default abstract class BasePage {
      * @returns The requested testing data.
      */
     public getTestData(fieldName: string): number | string | any {
-        return this.data[fieldName];
+        return this.data[camelize(fieldName)];
     }
 
     /**
