@@ -1,0 +1,8 @@
+{
+    "title": ".notification__title",
+    "descriptionText": ".notification__description",
+    "verificationCodeLabel": "[for=VerifyForm_code]",
+    "verificationCodeInput": "[data-test=input-code]",
+    "verifyButton": "[data-test=control-submit] span",
+    "requestCodeButton": "[data-test=control-request] span"
+}

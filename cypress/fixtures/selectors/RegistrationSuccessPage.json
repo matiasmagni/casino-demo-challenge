@@ -2,6 +2,6 @@
     "successIcon": ".notification__code .icon-success",
     "title": "h1.notification__title",
     "descriptionText": ".notification__description",
-    "viewProfileButton": ".button.button--s2.button--t1",
-    "browseGamesButton": ".button.button--s2.button--t4"
+    "viewProfileButton": ".button.button--s2.button--t1 span",
+    "browseGamesButton": ".button.button--s2.button--t4 span"
 }

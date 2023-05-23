@@ -1,4 +1,5 @@
 import BasePage from "./BasePage";
+import ConfirmPhonePage from "./ConfirmPhonePage";
 import RegistrationSuccessPage from "./RegistrationSuccessPage";
 import SignUpPage from "./SignUpPage";
 
@@ -19,6 +20,10 @@ export default class PageFactory {
 
             case 'Registration Success':
                 page = new RegistrationSuccessPage();
+                break;
+
+            case 'Confirm Phone':
+                page = new ConfirmPhonePage();
                 break;
             
             default:

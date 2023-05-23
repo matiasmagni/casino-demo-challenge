@@ -34,7 +34,7 @@ Feature: Sign Up
   #And the user inputs valid data into "Sign Up" form
   #| Element               | Type               | Value                  |
   #| Email                 | Random Email Input | <emailPrefix>          |
-  #| Agreement             | Checkbox           | <agreement>            |
+  #| Agreement             | Checkbox           | Yes                    |
   #| Password              | Input              | <password>             |
   #| Password Confirmation | Input              | <passwordConfirmation> |
   #And the user selects "Use a promo code" option on Redeem Bonus section of "Sign Up" page
@@ -45,11 +45,11 @@ Feature: Sign Up
   #And the user visualizes "Registration Success" page correctly
 
   #Examples:
-  #| emailPrefix  | agreement | promoCode | password    | passwordConfirmation |
-  #| matias.magni | Yes       | AXCD1234  | Password123 | Password123          |
-  #| test1        | Yes       | AXCD9824  | P4SSword123 | P4SSword123          |
-  #| abc-d        | Yes       | AXCD2134  | PaSsw0rd321 | PaSsw0rd321          |
-  #| abc+def      | Yes       | AXCD7568  | PaSsw0Rd321 | PaSsw0Rd321          |
+  #| emailPrefix  | promoCode | password    | passwordConfirmation |
+  #| matias.magni | AXCD1234  | Password123 | Password123          |
+  #| test1        | AXCD9824  | P4SSword123 | P4SSword123          |
+  #| abc-d        | AXCD2134  | PaSsw0rd321 | PaSsw0rd321          |
+  #| abc+def      | AXCD7568  | PaSsw0Rd321 | PaSsw0Rd321          |
 
   @PipelineIgnore @HybridTest
   Scenario Outline: User signs up correctly using email and selecting a currency distinct from USD
@@ -80,3 +80,33 @@ Feature: Sign Up
       | test-mETH   | mETH     | Password111 | Password111          |
       | test-BYR    | BYR      | Password111 | Password111          |
       | test-USDT   | USDT     | Password111 | Password111          |
+
+  @PipelineIgnore @HybridTest
+  Scenario Outline: User signs up correctly using phone and selecting USD currency without a redeem bonus
+    Given the user has navigated to "Sign Up" page
+    And the user has closed the Welcome window
+    When the user switches to "Phone" medium
+    And the user inputs valid data into "Sign Up" form
+      | Field                 | Type        | Value                  |
+      | Phone Number          | Phone Input | <phoneNumber>          |
+      | Agreement             | Checkbox    | Yes                    |
+      | Password              | Input       | <password>             |
+      | Password Confirmation | Input       | <passwordConfirmation> |
+    And the user selects "No bonus" option on Redeem Bonus section
+    And the user clicks on "Create account" form button
+    And the user completes the captcha manually
+    Then the user is redirected to "Confirm Phone" page
+    And the user visualizes "Confirm Phone" page correctly
+    When the user clicks on "Request code" button
+    And the user receives the SMS messsage in his phone and inputs the verification code manually
+    And the user clicks on "Verify" button
+    # I guess this is the expected behavior since I can't receive the verification code on my personal phone
+    Then the user visualizes "Registration Success" page correctly
+
+    Examples:
+      | phoneNumber   | password    | passwordConfirmation |
+      | +1646#######  | Password123 | Password123          |
+      | +4420######## | Password123 | Password123          |
+      | +612########  | Password123 | Password123          |
+      | +5411######## | Password123 | Password123          |
+

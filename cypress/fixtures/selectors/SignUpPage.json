@@ -8,5 +8,7 @@
     "promoCodeRadio": "[type=radio][data-test=input-promo_code]",
     "promoCodeInput": "[type=text][data-test=input-promo_code]",
     "noBonusRadio": "[data-test=input-bonus]",
-    "redeemBonusSection": "#bonus-list-container"
+    "redeemBonusSection": "#bonus-list-container",
+    "signUpMedium": ".tabs__description + .form__input .selectric-scroll ul",
+    "phoneNumberInput": "[data-test=input-phone]"
 }

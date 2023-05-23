@@ -3,6 +3,7 @@ import { Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
 import BasePage from '../pages/BasePage';
 import PageFactory from '../pages/PageFactory';
 import { getRandomEmail } from '../../utils/random';
+import { faker } from '@faker-js/faker';
 
 Given('the user has navigated to {string} page', (pageName: string) => {
     PageFactory.getCurrentPageObject(pageName).navigateToThisPage(30);
@@ -64,6 +65,10 @@ When('the user inputs valid data into {string} form', (pageName: string, table: 
                     .type(getRandomEmail(fieldValue, 'gmail.com'));
                 break;
 
+            case 'Phone Input':
+                page.getElement(fieldName + 'Input').clear().type(faker.phone.number(fieldValue));
+                break;
+
             default:
                 throw new Error(`Field type "${fieldType}" not implemented yet`)
         }
@@ -77,23 +82,51 @@ When('the user completes the captcha manually', () => {
 });
 
 Then('the user visualizes {string} page correctly', (pageName: string) => {
-    const page: BasePage = PageFactory.getCurrentPageObject(pageName);
+    let expectedTexts: any = {};
 
     switch (pageName) {
         case 'Registration Success':
-            page.getAllSelectors().forEach((elementName: string) => {
-                page.getElement(elementName).should('exist').and('be.visible');
-            });
+            expectedTexts = {
+                title: ' Congratulations! ',
+                descriptionText: ' Registration successfully finished! Confirmation has been sent to you. ',
+                viewProfileButton: 'View profile',
+                browseGamesButton: 'Browse games',
+            }
+            break;
 
+        case 'Confirm Phone':
+            expectedTexts = {
+                title: 'You must confirm your phone number',
+                descriptionText: 'Confirmation has been sent to your phone. It is necessary to confirm the SMS in order to complete the registration process.',
+                verificationCodeLabel: 'Verification code',
+                verifyButton: ' Verify',
+                requestCodeButton: ' Request code',
+            }
             break;
 
         default:
             throw new Error(`"${pageName}" page not implemented yet!`);
 
     }
+
+    const page: BasePage = PageFactory.getCurrentPageObject(pageName);
+    // Checks existence and visibility for all elements of the page
+    page.getAllSelectors().forEach((elementName: string) => {
+        page.getElement(elementName).should('exist').and('be.visible');
+    });
+    // Verify elements have the expected text
+    Object.entries(expectedTexts).forEach(([elementName, expectedText]) => {
+        page.getElement(elementName).should('have.text', expectedText);
+    });
 });
 
 Then('the user is redirected to {string} page', (pageName: string) => {
     const regex = new RegExp(`${PageFactory.getCurrentPageObject(pageName).getUrl()}$`);
     cy.url().should('match', regex);
+});
+
+Then('the user receives the SMS messsage in his phone and inputs the verification code manually', () => {
+    // Pauses the tests.
+    cy.pause();
+    // Check.
 });

@@ -1,8 +1,8 @@
 /// <reference types="cypress-tags" />
 import { When, Then } from 'cypress-cucumber-preprocessor/steps';
-import SignUpPage from '../pages/SignUpPage';
+import SignUpPage, { Medium } from '../pages/SignUpPage';
 
-When('the user selects {string} option on Redeem Bonus section', (option: string) => {
+When(/^the user selects "(Use a promo code|No bonus)" option on Redeem Bonus section$/, (option: string) => {
     const page: SignUpPage = new SignUpPage();
 
     switch (option) {
@@ -33,4 +33,9 @@ Then('the user cannot visualize the Reedeem Bonus section', () => {
     page.getElement('redeemBonusSection')
         .should('exist')
         .and('not.be.visible');
+});
+
+When(/^the user switches to "(E-mail|Phone)" medium$/, (medium: Medium) => {
+    const page: SignUpPage = new SignUpPage();
+    page.switchSignUpWayTo(medium);
 });
