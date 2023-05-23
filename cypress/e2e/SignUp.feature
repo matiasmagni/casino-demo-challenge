@@ -1,7 +1,7 @@
 Feature: Sign Up
   As a User, I want to be able to sign up into Casino web application using e-mail, phone number or social networks.
 
-  @PipelineIgnore @HybridTest
+  @PositiveTest @PipelineIgnore @HybridTest
   Scenario Outline: User signs up correctly using email and selecting USD currency without a redeem bonus
     Given the user has navigated to "Sign Up" page
     And the user has closed the Welcome window
@@ -51,7 +51,7 @@ Feature: Sign Up
   #| abc-d        | AXCD2134  | PaSsw0rd321 | PaSsw0rd321          |
   #| abc+def      | AXCD7568  | PaSsw0Rd321 | PaSsw0Rd321          |
 
-  @PipelineIgnore @HybridTest
+  @PositiveTest @PipelineIgnore @HybridTest
   Scenario Outline: User signs up correctly using email and selecting a currency distinct from USD
     Given the user has navigated to "Sign Up" page
     And the user has closed the Welcome window
@@ -81,7 +81,7 @@ Feature: Sign Up
       | test-BYR    | BYR      | Password111 | Password111          |
       | test-USDT   | USDT     | Password111 | Password111          |
 
-  @PipelineIgnore @HybridTest
+  @PositiveTest @PipelineIgnore @HybridTest
   Scenario Outline: User signs up correctly using phone and selecting USD currency without a redeem bonus
     Given the user has navigated to "Sign Up" page
     And the user has closed the Welcome window
@@ -110,3 +110,22 @@ Feature: Sign Up
       | +612########  | Password123 | Password123          |
       | +5411######## | Password123 | Password123          |
 
+  @NegativeTest @PipelineIgnore @HybridTest
+  Scenario Outline: User tries to signs up using an existing email
+    Given the user has navigated to "Sign Up" page
+    And the user has closed the Welcome window
+    Then the user visualizes email field border color is transparent
+    When the user inputs valid data into "Sign Up" form
+      | Field                 | Type     | Value                  |
+      | Email                 | Input    | <email>                |
+      | Agreement             | Checkbox | Yes                    |
+      | Password              | Input    | <password>             |
+      | Password Confirmation | Input    | <passwordConfirmation> |
+    And the user selects "No bonus" option on Redeem Bonus section
+    And the user clicks on "Create account" form button
+    And the user completes the captcha manually
+    Then the user visualizes an error message below email field which border turned red
+
+    Examples:
+      | email                  | password    | passwordConfirmation |
+      | matias.magni@gmail.com | Password123 | Password123          |

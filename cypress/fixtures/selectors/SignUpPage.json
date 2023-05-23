@@ -10,5 +10,6 @@
     "noBonusRadio": "[data-test=input-bonus]",
     "redeemBonusSection": "#bonus-list-container",
     "signUpMedium": ".tabs__description + .form__input .selectric-scroll ul",
-    "phoneNumberInput": "[data-test=input-phone]"
+    "phoneNumberInput": "[data-test=input-phone]",
+    "existingEmailErrorMsg": "[data-test=error-email]"
 }

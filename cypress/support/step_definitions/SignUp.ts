@@ -1,6 +1,7 @@
 /// <reference types="cypress-tags" />
 import { When, Then } from 'cypress-cucumber-preprocessor/steps';
 import SignUpPage, { Medium } from '../pages/SignUpPage';
+import { BORDER_COLOR } from '../../utils/constants';
 
 When(/^the user selects "(Use a promo code|No bonus)" option on Redeem Bonus section$/, (option: string) => {
     const page: SignUpPage = new SignUpPage();
@@ -38,4 +39,20 @@ Then('the user cannot visualize the Reedeem Bonus section', () => {
 When(/^the user switches to "(E-mail|Phone)" medium$/, (medium: Medium) => {
     const page: SignUpPage = new SignUpPage();
     page.switchSignUpWayTo(medium);
+});
+
+Then('the user visualizes email field border color is transparent', ()=> {
+    const page: SignUpPage = new SignUpPage();
+    page.getElement('emailInput')
+        .should('have.css', 'border-color', BORDER_COLOR.TRANSPARENT);
+});
+
+Then('the user visualizes an error message below email field which border turned red', () => {
+    const page: SignUpPage = new SignUpPage();
+    // Verify already existing email error message appears
+    page.getElement('existingEmailErrorMsg')
+        .should('contain.text', page.getTestData('existingEmailError'))
+    // Verify email input border turned red
+    page.getElement('emailInput')
+        .should('have.css', 'border-color', BORDER_COLOR.RED);
 });
