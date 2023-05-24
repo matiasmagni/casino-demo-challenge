@@ -12,7 +12,7 @@ Feature: Sign Up
       | Password              | Input              | <password>             |
       | Password Confirmation | Input              | <passwordConfirmation> |
     And the user selects "No bonus" option on Redeem Bonus section
-    And the user clicks on "Create account" form button
+    And the user clicks on "CREATE ACCOUNT" form button
     And the user completes the captcha manually
     Then the user is redirected to "Registration Success" page
     And the user visualizes "Registration Success" page correctly
@@ -22,8 +22,8 @@ Feature: Sign Up
       | matias.magni | Password123 | Password123          |
       | test1        | P4SSword123 | P4SSword123          |
       | abc-d        | PaSsw0rd321 | PaSsw0rd321          |
-  #Assuming emails with + pattern are not valid because of security reasons
-  #| abc+def      | Yes       | PaSsw0Rd321 | PaSsw0Rd321          |
+      # Assuming emails with + pattern are not valid because of security reasons
+      #| abc+def      | Yes       | PaSsw0Rd321 | PaSsw0Rd321          |
 
   # This scenario is left commented because of missing testing data: "valid promo codes"
 
@@ -39,7 +39,7 @@ Feature: Sign Up
   #| Password Confirmation | Input              | <passwordConfirmation> |
   #And the user selects "Use a promo code" option on Redeem Bonus section of "Sign Up" page
   #And the user inputs the promo code: "<promoCode>"
-  #And the user clicks on "Create account" form button
+  #And the user clicks on "CREATE ACCOUNT" form button
   #And the user completes the captcha manually
   #Then the user is redirected to "Registration Success" page
   #And the user visualizes "Registration Success" page correctly
@@ -63,7 +63,7 @@ Feature: Sign Up
       | Password              | Input              | <password>             |
       | Password Confirmation | Input              | <passwordConfirmation> |
     Then the user cannot visualize the Reedeem Bonus section
-    And the user clicks on "Create account" form button
+    And the user clicks on "CREATE ACCOUNT" form button
     And the user completes the captcha manually
     Then the user is redirected to "Registration Success" page
     And the user visualizes "Registration Success" page correctly
@@ -93,13 +93,13 @@ Feature: Sign Up
       | Password              | Input       | <password>             |
       | Password Confirmation | Input       | <passwordConfirmation> |
     And the user selects "No bonus" option on Redeem Bonus section
-    And the user clicks on "Create account" form button
+    And the user clicks on "CREATE ACCOUNT" form button
     And the user completes the captcha manually
     Then the user is redirected to "Confirm Phone" page
     And the user visualizes "Confirm Phone" page correctly
-    When the user clicks on "Request code" button
+    When the user clicks on "REQUEST CODE" button
     And the user receives the SMS messsage in his phone and inputs the verification code manually
-    And the user clicks on "Verify" button
+    And the user clicks on "VERIFY" button
     # I guess this is the expected behavior since I can't receive the verification code on my personal phone
     Then the user visualizes "Registration Success" page correctly
 
@@ -111,7 +111,7 @@ Feature: Sign Up
       | +5411######## | Password123 | Password123          |
 
   @NegativeTest @PipelineIgnore @HybridTest
-  Scenario Outline: User tries to signs up using an existing email
+  Scenario Outline: User tries to sign up using an existing email
     Given the user has navigated to "Sign Up" page
     And the user has closed the Welcome window
     Then the user visualizes email field border color is transparent
@@ -122,7 +122,7 @@ Feature: Sign Up
       | Password              | Input    | <password>             |
       | Password Confirmation | Input    | <passwordConfirmation> |
     And the user selects "No bonus" option on Redeem Bonus section
-    And the user clicks on "Create account" form button
+    And the user clicks on "CREATE ACCOUNT" form button
     And the user completes the captcha manually
     Then the user visualizes an error message below email field which border turned red
 
@@ -134,7 +134,7 @@ Feature: Sign Up
   Scenario: User tries to sign up leaving all fields blank
     Given the user has navigated to "Sign Up" page
     And the user has closed the Welcome window
-    And the user clicks on "Create account" form button
+    And the user clicks on "CREATE ACCOUNT" form button
     And the user completes the captcha manually
     Then the user visualizes error messages below the "Sign Up" uncompleted fields
       | Fields                |

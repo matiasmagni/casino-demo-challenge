@@ -3,9 +3,7 @@ import { camelize } from "../../utils/string";
 /**
  * BasePage class. All page objects must inherite from this class.
  */
-export default abstract class BasePage {
-
-    protected url: string = '/';
+export default abstract class BaseComponent {
     protected selectors: any = null;
     protected data: any = null;
 
@@ -25,7 +23,7 @@ export default abstract class BasePage {
      * @returns A button element.
      */
     public static getButtonByName(name: string): Cypress.Chainable {
-        return cy.contains('button', name);
+        return cy.contains('button', name, { matchCase: false });
     }
 
     /**
@@ -35,16 +33,7 @@ export default abstract class BasePage {
      * @returns A button element.
      */
     public static getSpanButtonByName(name: string): Cypress.Chainable {
-        return cy.contains('button span', name);
-    }
-
-    /**
-     * Returns the page's URL.
-     * 
-     * @returns The page's URL.
-     */
-    public getUrl(): string {
-        return this.url;
+        return cy.contains('button span', name, { matchCase: false });
     }
 
     /**
@@ -54,19 +43,6 @@ export default abstract class BasePage {
      */
     public getAllSelectors(): string[] {
         return Object.keys(this.selectors);
-    }
-
-    /**
-     * Navigates to this page object's URL.
-     * 
-     * @param timeout in seconds.
-     */
-    public navigateToThisPage(timeout: number = 10) {
-        cy.log('URL', this.getUrl());
-        cy.visit(this.getUrl(), {
-            timeout: timeout * 1000,
-            failOnStatusCode: false // Workaround for 503 status code error
-        });
     }
 
     /**
@@ -108,21 +84,5 @@ export default abstract class BasePage {
      */
     public getTestData(fieldName: string): number | string | any {
         return this.data[camelize(fieldName)];
-    }
-
-    /**
-     * Scrolls to the bottom of the page slowly.
-     * For video recording debugging purposes.
-     */
-    protected scrollSlowlyToBottom() {
-        cy.scrollTo('bottom', { duration: Cypress.env('timeouts').scroll });
-    }
-
-    /**
-     * Scrolls to the top of the page slowly.
-     * For video recording debugging purposes.
-     */
-    protected scrollSlowlyToTop() {
-        cy.scrollTo('top', { duration: Cypress.env('timeouts').scroll });
     }
 }

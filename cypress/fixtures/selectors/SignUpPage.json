@@ -11,9 +11,9 @@
     "redeemBonusSection": "#bonus-list-container",
     "signUpMedium": ".tabs__description + .form__input .selectric-scroll ul",
     "phoneNumberInput": "[data-test=input-phone]",
-    "emailBlankErrorMsg": "[data-test=error-email]",
-    "agreementBlankErrorMsg": "[data-test=error-terms_and_conditions]",
-    "passwordBlankErrorMsg": "[data-test=error-password]",
-    "passwordConfirmationBlankErrorMsg": "[data-test=error-password_confirmation]",
-    "promoCodeBlankErrorMsg": ".validation-message.form__error-message.error"
+    "emailErrorMsg": "[data-test=error-email]",
+    "agreementErrorMsg": "[data-test=error-terms_and_conditions]",
+    "passwordErrorMsg": "[data-test=error-password]",
+    "passwordConfirmationErrorMsg": "[data-test=error-password_confirmation]",
+    "promoCodeErrorMsg": ".validation-message.form__error-message.error"
 }

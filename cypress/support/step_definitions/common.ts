@@ -1,10 +1,10 @@
 /// <reference types="cypress-tags" />
 import { Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
-import BasePage from '../pages/BasePage';
-import PageFactory from '../pages/PageFactory';
+import BasePage from '../components/pages/BasePage';
+import PageFactory from '../components/pages/PageFactory';
 import { getRandomEmail } from '../../utils/random';
 import { faker } from '@faker-js/faker';
-import SignUpPage from '../pages/SignUpPage';
+import SignUpPage from '../components/pages/SignUpPage';
 
 Given('the user has navigated to {string} page', (pageName: string) => {
     PageFactory.getCurrentPageObject(pageName).navigateToThisPage(30);
@@ -136,7 +136,7 @@ Then('the user visualizes error messages below the {string} uncompleted fields',
     const page: BasePage = PageFactory.getCurrentPageObject(pageName);
 
     table.rows().forEach(([fieldName]: string[]) => {
-        page.getElement(fieldName + 'BlankErrorMsg')
+        page.getElement(fieldName + 'ErrorMsg')
             .should('exist')
             .and('be.visible')
             .and('contain.text', page.getTestData(fieldName + 'BlankError'));

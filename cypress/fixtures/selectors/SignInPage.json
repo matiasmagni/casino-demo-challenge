@@ -1,0 +1,5 @@
+{
+    "usernameInput": "[data-test=input-username]",
+    "passwordInput": "[data-test=input-password]",
+    "passwordToggler": "[data-password-toggler]"
+}

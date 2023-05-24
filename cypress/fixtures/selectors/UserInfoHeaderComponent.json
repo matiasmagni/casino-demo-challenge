@@ -1,0 +1,7 @@
+{
+    "wrapper": ".user-info__wrapper",
+    "choosePayMethodButton": "a.header-user__transactions",
+    "avatar": ".user-avatar img",
+    "currencyRealWrapper": ".currency--real",
+    "currencyBonusWrapper": ".currency--bonus"
+}
